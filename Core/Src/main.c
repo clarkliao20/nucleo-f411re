@@ -143,7 +143,8 @@ int main(void)
   Blink01Handle = osThreadNew(StartBlink01, NULL, &Blink01_attributes);
 
   /* creation of Servo00 */
-  Servo00Handle = osThreadNew(Servo00_Control, NULL, &Servo00_attributes);
+  int degree = 1500;
+  Servo00Handle = osThreadNew(Servo00_Control, (void*) degree, &Servo00_attributes);
 
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
@@ -399,14 +400,16 @@ void StartBlink01(void *argument)
 void Servo00_Control(void *argument)
 {
   /* USER CODE BEGIN Servo00_Control */
+	int *degree;
+	degree = (int*) argument;
   /* Infinite loop */
   for(;;)
   {
+	__HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_3, degree);
+	HAL_Delay(2000);
 	__HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_3, 500);
-	HAL_Delay(1000);
-	__HAL_TIM_SET_COMPARE(&htim2, TIM_CHANNEL_3, 2500);
-	HAL_Delay(1000);
-    osDelay(1);
+	HAL_Delay(2000);
+    osDelay(4000);
   }
   /* USER CODE END Servo00_Control */
 }

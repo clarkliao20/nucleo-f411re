@@ -64,8 +64,8 @@ all: main-build
 main-build: nucleo-f411re-local.elf secondary-outputs
 
 # Tool invocations
-nucleo-f411re-local.elf nucleo-f411re-local.map: $(OBJS) $(USER_OBJS) C:\Users\clark\Downloads\nucleo-f411re-local\nucleo-f411re-local\STM32F411RETX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "nucleo-f411re-local.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\clark\Downloads\nucleo-f411re-local\nucleo-f411re-local\STM32F411RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="nucleo-f411re-local.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+nucleo-f411re-local.elf nucleo-f411re-local.map: $(OBJS) $(USER_OBJS) C:\Users\liao175\Desktop\nucleo-f411re\STM32F411RETX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "nucleo-f411re-local.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\liao175\Desktop\nucleo-f411re\STM32F411RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="nucleo-f411re-local.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
